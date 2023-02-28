@@ -1,9 +1,9 @@
-import { Text } from 'react-native';
+import DogsList from '../../components/dogsList';
 import useDogs from '../../hooks/useDogs';
 
 const Dogs = () => {
-  useDogs();
-  return <Text>Esneider</Text>;
+  const { dogs } = useDogs();
+  return <DogsList dogs={dogs} />;
 };
 
 export default Dogs;
