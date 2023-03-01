@@ -11,7 +11,6 @@ export default function App() {
     <Provider store={store}>
       <View style={styles.container}>
         <Dogs />
-        <Text>Esneider</Text>
         <StatusBar style="auto" />
       </View>
     </Provider>
@@ -20,8 +19,7 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#fff',
-    justifyContent: 'center',
+    marginTop: 40,
   },
 });
