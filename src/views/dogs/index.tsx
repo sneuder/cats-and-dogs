@@ -1,4 +1,4 @@
-import { View, ScrollView, StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet } from 'react-native';
 
 import Separator from '../../common/separator';
 
