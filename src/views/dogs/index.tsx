@@ -1,4 +1,6 @@
-import { View } from 'react-native';
+import { View, ScrollView, StyleSheet } from 'react-native';
+
+import Separator from '../../common/separator';
 
 import SearchBar from '../../components/searchBar';
 import DogsList from '../../components/dogsList';
@@ -9,11 +11,19 @@ const Dogs = () => {
   const { dogs } = useDogs();
 
   return (
-    <View>
+    <ScrollView style={style.container}>
       <SearchBar />
+      <Separator />
       <DogsList dogs={dogs} />
-    </View>
+    </ScrollView>
   );
 };
+
+const style = StyleSheet.create({
+  container: {
+    paddingHorizontal: 20,
+    paddingBottom: 20,
+  },
+});
 
 export default Dogs;
