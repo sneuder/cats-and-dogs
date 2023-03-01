@@ -6,14 +6,22 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
+import useDogs from '../../hooks/useDogs';
+
 const SearchBar = () => {
+  const { handleSearchDogs, handleSaveSearch } = useDogs();
+
   return (
-    <View>
+    <View style={styles.container}>
       <TextInput
         style={styles.input}
         placeholder="Search puppies"
+        onChangeText={handleSaveSearch}
       />
-      <TouchableOpacity>
+      <TouchableOpacity
+        style={styles.containerButton}
+        onPress={handleSearchDogs}
+      >
         <Text style={styles.textButton}>Search</Text>
       </TouchableOpacity>
     </View>
@@ -21,18 +29,26 @@ const SearchBar = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {},
+  container: {
+    flexDirection: 'row',
+  },
   input: {
-    height: 40,
+    flex: 1,
     borderWidth: 1,
+    borderRightWidth: 0,
     padding: 10,
-    borderRadius: 8,
+    borderTopLeftRadius: 8,
+    borderBottomLeftRadius: 8,
   },
   textButton: {
-    backgroundColor: 'red',
-    borderRadius: 8,
-    padding: 10,
     textAlign: 'center',
+  },
+  containerButton: {
+    alignContent: 'center',
+    padding: 10,
+    backgroundColor: 'red',
+    borderTopRightRadius: 8,
+    borderBottomRightRadius: 8,
   },
 });
 

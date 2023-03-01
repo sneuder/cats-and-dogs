@@ -2,6 +2,8 @@ import { Text, View, Image, StyleSheet } from 'react-native';
 import Separator from '../../common/separator';
 
 const DogsList = ({ dogs }: any) => {
+  if (dogs === undefined) return <View></View>;
+
   return (
     <View>
       {dogs.map((dog: any) => (
