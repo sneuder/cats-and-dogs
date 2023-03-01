@@ -2,7 +2,7 @@ import store from './src/state';
 import { Provider } from 'react-redux';
 
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import Dogs from './src/views/dogs/index';
 

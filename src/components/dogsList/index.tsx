@@ -3,8 +3,10 @@ import { Text, View, FlatList, Image, StyleSheet } from 'react-native';
 const DogsList = ({ dogs }: any) => {
   return (
     <FlatList
-      scrollToOverflowEnabled={false}
       style={style.dogsList}
+      ItemSeparatorComponent={() => <Text> </Text>}
+      ListFooterComponent={() => <Text> </Text>}
+      ListHeaderComponent={() => <Text> </Text>}
       data={dogs}
       renderItem={({ item: dog }) => (
         <View style={style.dogCard}>
@@ -23,13 +25,12 @@ const DogsList = ({ dogs }: any) => {
 
 const style = StyleSheet.create({
   dogsList: {
-    paddingLeft: 20,
-    paddingRight: 20,
+    paddingEnd: 20,
+    paddingStart: 20,
   },
   dogCard: {
     backgroundColor: '#756363',
     borderRadius: 8,
-    marginBottom: 20,
     overflow: 'hidden',
   },
   image: {
@@ -37,7 +38,7 @@ const style = StyleSheet.create({
     height: 200,
   },
   infoContainer: {
-    margin: 10,
+    padding: 10,
   },
 });
 
