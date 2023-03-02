@@ -6,7 +6,7 @@ const DogsList = ({ dogs }: any) => {
 
   return (
     <View>
-      {dogs.map((dog: any) => (
+      {dogs.map((dog: any, index: number) => (
         <View key={dog.id}>
           <View style={style.dogCard}>
             <Image
@@ -17,7 +17,7 @@ const DogsList = ({ dogs }: any) => {
               <Text>{dog.name}</Text>
             </View>
           </View>
-          <Separator />
+          {index !== dogs.length - 1 && <Separator />}
         </View>
       ))}
     </View>
@@ -25,10 +25,6 @@ const DogsList = ({ dogs }: any) => {
 };
 
 const style = StyleSheet.create({
-  dogsList: {
-    paddingEnd: 20,
-    paddingStart: 20,
-  },
   dogCard: {
     backgroundColor: '#756363',
     borderRadius: 8,
