@@ -11,7 +11,11 @@ const PetList = ({ dogs }: any) => {
           <View style={style.dogCard}>
             <Image
               style={style.image}
-              source={{ uri: dog.image?.url }}
+              source={{
+                uri:
+                  dog.image?.url ||
+                  `https://cdn2.thecatapi.com/images/${dog.reference_image_id}.jpg`,
+              }}
             />
             <View style={style.infoContainer}>
               <Text>{dog.name}</Text>

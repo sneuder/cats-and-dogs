@@ -8,11 +8,15 @@ import homeOptions from '../../constants/homeOptions';
 const Home = ({ navigation }) => {
   return (
     <MainLayout>
-      {homeOptions.map(({ name, image }, index) => (
+      {homeOptions.map(({ name, image, pet }, index) => (
         <>
           <TouchableHighlight
             style={styles.image}
-            onPress={() => navigation.navigate(name)}
+            onPress={() =>
+              navigation.navigate(name, {
+                pet,
+              })
+            }
           >
             <Image
               style={styles.image}

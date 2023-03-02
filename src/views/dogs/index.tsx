@@ -8,8 +8,8 @@ import PetList from '../../components/petList';
 
 import useDogs from '../../hooks/usePet';
 
-const Dogs = ({ navigation }) => {
-  const { dogs } = useDogs('cat');
+const Dogs = ({ route }) => {
+  const { dogs } = useDogs(route.params.pet);
 
   return (
     <ScrollView>
