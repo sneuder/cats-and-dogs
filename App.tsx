@@ -6,8 +6,8 @@ import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import Home from './src/views/home/indext';
-import Pets from './src/views/pets/index';
+import Home from './src/views/home';
+import Pets from './src/views/pets';
 
 export default function App() {
   const Stack = createNativeStackNavigator();
