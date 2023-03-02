@@ -7,7 +7,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import Home from './src/views/home/indext';
-import Dogs from './src/views/pets/index';
+import Pets from './src/views/pets/index';
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -22,7 +22,7 @@ export default function App() {
           />
           <Stack.Screen
             name="Pets"
-            component={Dogs}
+            component={Pets}
           />
         </Stack.Navigator>
       </NavigationContainer>
