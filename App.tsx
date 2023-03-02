@@ -21,7 +21,7 @@ export default function App() {
             component={Home}
           />
           <Stack.Screen
-            name="Dogs"
+            name="Pets"
             component={Dogs}
           />
         </Stack.Navigator>

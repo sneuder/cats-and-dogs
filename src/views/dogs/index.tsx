@@ -4,19 +4,19 @@ import Separator from '../../common/separator';
 import MainLayout from '../../common/mainLayout';
 
 import SearchBar from '../../components/searchBar';
-import DogsList from '../../components/dogsList';
+import PetList from '../../components/petList';
 
-import useDogs from '../../hooks/useDogs';
+import useDogs from '../../hooks/usePet';
 
-const Dogs = () => {
-  const { dogs } = useDogs();
+const Dogs = ({ navigation }) => {
+  const { dogs } = useDogs('cat');
 
   return (
     <ScrollView>
       <MainLayout>
         <SearchBar />
         <Separator />
-        <DogsList dogs={dogs} />
+        <PetList dogs={dogs} />
       </MainLayout>
     </ScrollView>
   );

@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import useDogs from '../../hooks/useDogs';
+import useDogs from '../../hooks/usePet';
 
 const SearchBar = () => {
   const { handleSearchDogs, handleSaveSearch } = useDogs();

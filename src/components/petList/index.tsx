@@ -1,7 +1,7 @@
 import { Text, View, Image, StyleSheet } from 'react-native';
 import Separator from '../../common/separator';
 
-const DogsList = ({ dogs }: any) => {
+const PetList = ({ dogs }: any) => {
   if (dogs === undefined) return <View></View>;
 
   return (
@@ -11,7 +11,7 @@ const DogsList = ({ dogs }: any) => {
           <View style={style.dogCard}>
             <Image
               style={style.image}
-              source={{ uri: dog.image.url }}
+              source={{ uri: dog.image?.url }}
             />
             <View style={style.infoContainer}>
               <Text>{dog.name}</Text>
@@ -39,4 +39,4 @@ const style = StyleSheet.create({
   },
 });
 
-export default DogsList;
+export default PetList;
