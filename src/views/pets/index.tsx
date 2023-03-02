@@ -25,4 +25,4 @@ const Pets = ({ route }) => {
   );
 };
 
-export default Pet;
+export default Pets;
