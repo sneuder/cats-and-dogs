@@ -1,5 +1,6 @@
-import axios from 'axios';
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
+
+import PetType from '../interfaces/PetType';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { addDogs } from '../state/slices/dogs';
@@ -7,7 +8,7 @@ import { searchDog } from '../state/slices/app';
 
 import { getAllPets } from '../services';
 
-const usePet = (petType: any) => {
+const usePet = (petType: PetType) => {
   const dispatch = useDispatch();
   const dogs = useSelector((state: any) => state.dogs.dogs);
   const searchQuery = useSelector((state: any) => state.app.search);
@@ -31,7 +32,7 @@ const usePet = (petType: any) => {
   };
 
   useEffect(() => {
-    handleDogsByPage();
+    petType && handleDogsByPage();
   }, []);
 
   return {

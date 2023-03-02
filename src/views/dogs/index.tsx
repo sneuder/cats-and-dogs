@@ -6,10 +6,10 @@ import MainLayout from '../../common/mainLayout';
 import SearchBar from '../../components/searchBar';
 import PetList from '../../components/petList';
 
-import useDogs from '../../hooks/usePet';
+import usePet from '../../hooks/usePet';
 
 const Dogs = ({ route }) => {
-  const { dogs } = useDogs(route.params.pet);
+  const { dogs } = usePet(route.params.pet);
 
   return (
     <ScrollView>
