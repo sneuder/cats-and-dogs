@@ -1,27 +1,28 @@
 import { Text, View, Image, StyleSheet } from 'react-native';
 import Separator from '../../common/separator';
+import LoaderPets from '../../common/loaders/pets/indext';
 
-const PetList = ({ dogs }: any) => {
-  if (dogs === undefined) return <View></View>;
+const PetList = ({ pets, loadPets }: any) => {
+  if (loadPets) return <LoaderPets />;
 
   return (
     <View>
-      {dogs.map((dog: any, index: number) => (
-        <View key={dog.id}>
+      {pets.map((pet: any, index: number) => (
+        <View key={pet.id}>
           <View style={style.dogCard}>
             <Image
               style={style.image}
               source={{
                 uri:
-                  dog.image?.url ||
-                  `https://cdn2.thecatapi.com/images/${dog.reference_image_id}.jpg`,
+                  pet.image?.url ||
+                  `https://cdn2.thecatapi.com/images/${pet.reference_image_id}.jpg`,
               }}
             />
             <View style={style.infoContainer}>
-              <Text>{dog.name}</Text>
+              <Text>{pet.name}</Text>
             </View>
           </View>
-          {index !== dogs.length - 1 && <Separator />}
+          {index !== pets.length - 1 && <Separator />}
         </View>
       ))}
     </View>

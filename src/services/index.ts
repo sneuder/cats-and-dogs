@@ -1,6 +1,5 @@
 import axios from 'axios';
-
-type PetType = 'dog' | 'cat';
+import PetType from '../interfaces/PetType';
 
 const baseURLs = (petType: PetType) => `https://api.the${petType}api.com/v1`;
 

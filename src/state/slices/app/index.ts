@@ -3,10 +3,12 @@ import * as reducers from './reducers';
 
 export interface InitialState {
   search: string;
+  loadPets: boolean;
 }
 
 const initialState: InitialState = {
   search: '',
+  loadPets: false,
 };
 
 export const appSlice = createSlice({
@@ -15,5 +17,5 @@ export const appSlice = createSlice({
   reducers,
 });
 
-export const { searchDog } = appSlice.actions;
+export const { searchDog, toggleBooleanStates } = appSlice.actions;
 export default appSlice.reducer;

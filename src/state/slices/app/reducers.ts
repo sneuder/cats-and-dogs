@@ -7,3 +7,10 @@ export const searchDog = (
 ) => {
   state.search = action.payload;
 };
+
+export const toggleBooleanStates = (
+  state: InitialState,
+  action: PayloadAction<string>
+) => {
+  state[action.payload] = !state[action.payload];
+};

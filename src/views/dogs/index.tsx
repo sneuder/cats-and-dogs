@@ -9,14 +9,17 @@ import PetList from '../../components/petList';
 import usePet from '../../hooks/usePet';
 
 const Dogs = ({ route }) => {
-  const { dogs } = usePet(route.params.pet);
+  const { pets, loadPets } = usePet(route.params.pet);
 
   return (
     <ScrollView>
       <MainLayout>
         <SearchBar />
         <Separator />
-        <PetList dogs={dogs} />
+        <PetList
+          pets={pets}
+          loadPets={loadPets}
+        />
       </MainLayout>
     </ScrollView>
   );
