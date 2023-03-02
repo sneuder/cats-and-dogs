@@ -7,7 +7,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import Home from './src/views/home/indext';
-import Dogs from './src/views/dogs/index';
+import Dogs from './src/views/pets/index';
 
 export default function App() {
   const Stack = createNativeStackNavigator();
