@@ -1,6 +1,7 @@
 import { Text, View, Image, StyleSheet } from 'react-native';
-import Separator from '../../common/separator';
+
 import LoaderPets from '../../common/loaders/pets/indext';
+import ListLayout from '../../common/listLayout';
 
 const PetList = ({ pets, loadPets }: any) => {
   if (loadPets) return <LoaderPets />;
@@ -8,7 +9,11 @@ const PetList = ({ pets, loadPets }: any) => {
   return (
     <View>
       {pets.map((pet: any, index: number) => (
-        <View key={pet.id}>
+        <ListLayout
+          index={index}
+          collection={pets}
+          key={pet.id}
+        >
           <View style={style.dogCard}>
             <Image
               style={style.image}
@@ -22,8 +27,7 @@ const PetList = ({ pets, loadPets }: any) => {
               <Text>{pet.name}</Text>
             </View>
           </View>
-          {index !== pets.length - 1 && <Separator />}
-        </View>
+        </ListLayout>
       ))}
     </View>
   );
