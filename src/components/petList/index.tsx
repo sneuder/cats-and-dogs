@@ -11,7 +11,7 @@ const PetList = ({ pets, loadPets }: any) => {
       {pets.map((pet: any) => (
         <View
           style={style.dogCard}
-          key={pet.key}
+          key={pet.id}
         >
           <Image
             style={style.image}
