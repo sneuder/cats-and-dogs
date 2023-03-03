@@ -6,6 +6,7 @@ const MainLayout = ({ children }) => {
 
 const styles = StyleSheet.create({
   container: {
+    gap: 20,
     minHeight: '100%',
     padding: 20,
   },

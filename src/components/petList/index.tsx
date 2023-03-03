@@ -7,29 +7,26 @@ const PetList = ({ pets, loadPets }: any) => {
   if (loadPets) return <LoaderPets />;
 
   return (
-    <View>
-      {pets.map((pet: any, index: number) => (
-        <ListLayout
-          index={index}
-          collection={pets}
-          key={pet.id}
+    <ListLayout>
+      {pets.map((pet: any) => (
+        <View
+          style={style.dogCard}
+          key={pet.key}
         >
-          <View style={style.dogCard}>
-            <Image
-              style={style.image}
-              source={{
-                uri:
-                  pet.image?.url ||
-                  `https://cdn2.thecatapi.com/images/${pet.reference_image_id}.jpg`,
-              }}
-            />
-            <View style={style.infoContainer}>
-              <Text>{pet.name}</Text>
-            </View>
+          <Image
+            style={style.image}
+            source={{
+              uri:
+                pet.image?.url ||
+                `https://cdn2.thecatapi.com/images/${pet.reference_image_id}.jpg`,
+            }}
+          />
+          <View style={style.infoContainer}>
+            <Text>{pet.name}</Text>
           </View>
-        </ListLayout>
+        </View>
       ))}
-    </View>
+    </ListLayout>
   );
 };
 

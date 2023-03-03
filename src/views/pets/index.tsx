@@ -1,6 +1,5 @@
 import { ScrollView } from 'react-native';
 
-import Separator from '../../common/separator';
 import MainLayout from '../../common/mainLayout';
 
 import SearchBar from '../../components/searchBar';
@@ -15,7 +14,6 @@ const Pets = ({ route }) => {
     <ScrollView>
       <MainLayout>
         <SearchBar />
-        <Separator />
         <PetList
           pets={pets}
           loadPets={loadPets}

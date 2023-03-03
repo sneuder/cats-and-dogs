@@ -1,4 +1,6 @@
-import { StyleSheet, Image, TouchableHighlight } from 'react-native';
+import { Fragment } from 'react';
+
+import { StyleSheet, Image, TouchableHighlight, View } from 'react-native';
 
 import MainLayout from '../../common/mainLayout';
 import ListLayout from '../../common/listLayout';
@@ -9,11 +11,7 @@ const Home = ({ navigation }) => {
   return (
     <MainLayout>
       {homeOptions.map(({ name, image, pet }, index) => (
-        <ListLayout
-          key={pet}
-          collection={homeOptions}
-          index={index}
-        >
+        <Fragment key={pet}>
           <TouchableHighlight
             style={styles.image}
             onPress={() =>
@@ -29,7 +27,7 @@ const Home = ({ navigation }) => {
               }}
             />
           </TouchableHighlight>
-        </ListLayout>
+        </Fragment>
       ))}
     </MainLayout>
   );

@@ -4,17 +4,14 @@ import ListLayout from '../../listLayout';
 const LoaderPets = () => {
   const times = [1, 2, 3, 4, 5, 6, 7, 8];
   return (
-    <View>
+    <ListLayout>
       {times.map((time, index) => (
-        <ListLayout
+        <View
+          style={styles.container}
           key={index}
-          collection={times}
-          index={index}
-        >
-          <View style={styles.container}></View>
-        </ListLayout>
+        ></View>
       ))}
-    </View>
+    </ListLayout>
   );
 };
 
