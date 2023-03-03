@@ -4,6 +4,7 @@ import MainLayout from '../../common/mainLayout';
 
 import SearchBar from '../../components/searchBar';
 import PetList from '../../components/petList';
+import Navigation from '../../components/navigation';
 
 import usePet from '../../hooks/usePet';
 
@@ -18,6 +19,7 @@ const Pets = ({ route }) => {
           pets={pets}
           loadPets={loadPets}
         />
+        <Navigation amount={3} />
       </MainLayout>
     </ScrollView>
   );

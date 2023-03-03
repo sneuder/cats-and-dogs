@@ -15,3 +15,10 @@ export const toggleMainPet = (
 ) => {
   state.pet = action.payload;
 };
+
+export const amountPets = (
+  state: InitialState,
+  action: PayloadAction<number>
+) => {
+  state.amount = action.payload;
+};

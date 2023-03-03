@@ -3,7 +3,11 @@ import PetType from '../interfaces/PetType';
 
 const baseURLs = (petType: PetType) => `https://api.the${petType}api.com/v1`;
 
-export const getAllPets = (petType: PetType, page: number, limit: number) => {
+export const getAllPetsByPage = (
+  petType: PetType,
+  page: number,
+  limit: number
+) => {
   return axios({
     method: 'get',
     url: `${baseURLs(petType)}/breeds`,
@@ -11,6 +15,13 @@ export const getAllPets = (petType: PetType, page: number, limit: number) => {
       page: page,
       limit: limit,
     },
+  });
+};
+
+export const getAllPets = (petType: PetType) => {
+  return axios({
+    method: 'get',
+    url: `${baseURLs(petType)}/breeds`,
   });
 };
 

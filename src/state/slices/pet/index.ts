@@ -7,6 +7,7 @@ export interface InitialState {
     cat: { [key: string]: string | number }[];
   };
   pet: { [key: string]: string | number };
+  amount: number;
 }
 
 const initialState: InitialState = {
@@ -15,6 +16,7 @@ const initialState: InitialState = {
     cat: [],
   },
   pet: {},
+  amount: 0,
 };
 
 export const petSlice = createSlice({
@@ -23,5 +25,5 @@ export const petSlice = createSlice({
   reducers,
 });
 
-export const { addPets, toggleMainPet } = petSlice.actions;
+export const { addPets, toggleMainPet, amountPets } = petSlice.actions;
 export default petSlice.reducer;
