@@ -14,3 +14,10 @@ export const toggleBooleanStates = (
 ) => {
   state[action.payload[0]] = action.payload[1];
 };
+
+export const navigationDetails = (
+  state: InitialState,
+  action: PayloadAction<[string, number]>
+) => {
+  state.navigator[action.payload[0]] = action.payload[1];
+};
