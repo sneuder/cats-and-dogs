@@ -2,12 +2,18 @@ import { createSlice } from '@reduxjs/toolkit';
 import * as reducers from './reducers';
 
 export interface InitialState {
-  pets: { [key: string]: string | number }[];
+  pets: {
+    dog: { [key: string]: string | number }[];
+    cat: { [key: string]: string | number }[];
+  };
   pet: { [key: string]: string | number };
 }
 
 const initialState: InitialState = {
-  pets: [],
+  pets: {
+    dog: [],
+    cat: [],
+  },
   pet: {},
 };
 

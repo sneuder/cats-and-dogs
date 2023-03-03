@@ -10,16 +10,16 @@ import { getAllPets } from '../services';
 
 const usePet = (petType: PetType) => {
   const dispatch = useDispatch();
-  const pets = useSelector((state: any) => state.pet.pets);
+  const pets = useSelector((state: any) => state.pet.pets[petType]);
   const { searchQuery, loadPets } = useSelector((state: any) => state.app);
 
   const handleDogsByPage = (page = 0, limit = 10) => {
-    dispatch(toggleBooleanStates('loadPets'));
+    dispatch(toggleBooleanStates(['loadPets', true]));
 
     getAllPets(petType, page, limit)
       .then(({ data }) => {
-        dispatch(addPets(data));
-        dispatch(toggleBooleanStates('loadPets'));
+        dispatch(addPets([petType, data]));
+        dispatch(toggleBooleanStates(['loadPets', false]));
       })
       .catch((e) => {});
   };
@@ -29,11 +29,17 @@ const usePet = (petType: PetType) => {
   };
 
   const handleSearchDogs = () => {
-    dispatch(addPets([]));
+    dispatch(addPets([petType, []]));
   };
 
   useEffect(() => {
     petType && handleDogsByPage();
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      loadPets && dispatch(toggleBooleanStates(['loadPets', false]));
+    };
   }, []);
 
   return {

@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import { StyleSheet, Image, TouchableHighlight } from 'react-native';
 
 import Separator from '../../common/separator';
@@ -9,7 +10,7 @@ const Home = ({ navigation }) => {
   return (
     <MainLayout>
       {homeOptions.map(({ name, image, pet }, index) => (
-        <>
+        <Fragment key={pet}>
           <TouchableHighlight
             style={styles.image}
             onPress={() =>
@@ -26,7 +27,7 @@ const Home = ({ navigation }) => {
             />
           </TouchableHighlight>
           {index !== homeOptions.length - 1 && <Separator />}
-        </>
+        </Fragment>
       ))}
     </MainLayout>
   );

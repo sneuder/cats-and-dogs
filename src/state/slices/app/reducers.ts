@@ -10,7 +10,7 @@ export const searchDog = (
 
 export const toggleBooleanStates = (
   state: InitialState,
-  action: PayloadAction<string>
+  action: PayloadAction<[string, boolean]>
 ) => {
-  state[action.payload] = !state[action.payload];
+  state[action.payload[0]] = action.payload[1];
 };
