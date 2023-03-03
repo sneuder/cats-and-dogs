@@ -1,8 +1,7 @@
-import { Fragment } from 'react';
 import { StyleSheet, Image, TouchableHighlight } from 'react-native';
 
-import Separator from '../../common/separator';
 import MainLayout from '../../common/mainLayout';
+import ListLayout from '../../common/listLayout';
 
 import homeOptions from '../../constants/homeOptions';
 
@@ -10,7 +9,11 @@ const Home = ({ navigation }) => {
   return (
     <MainLayout>
       {homeOptions.map(({ name, image, pet }, index) => (
-        <Fragment key={pet}>
+        <ListLayout
+          key={pet}
+          collection={homeOptions}
+          index={index}
+        >
           <TouchableHighlight
             style={styles.image}
             onPress={() =>
@@ -26,8 +29,7 @@ const Home = ({ navigation }) => {
               }}
             />
           </TouchableHighlight>
-          {index !== homeOptions.length - 1 && <Separator />}
-        </Fragment>
+        </ListLayout>
       ))}
     </MainLayout>
   );

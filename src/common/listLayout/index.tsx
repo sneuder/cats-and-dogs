@@ -1,12 +1,12 @@
-import { View } from 'react-native';
+import { Fragment } from 'react';
 import Separator from '../separator';
 
 const ListLayout = ({ children, collection, index }) => {
   return (
-    <View>
+    <Fragment>
       {children}
       {index !== collection.length - 1 && <Separator />}
-    </View>
+    </Fragment>
   );
 };
 
