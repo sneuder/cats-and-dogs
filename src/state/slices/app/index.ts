@@ -17,9 +17,9 @@ const initialState: InitialState = {
   loadPets: false,
   navigator: {
     total: 0,
-    current: 0,
-    next: 0,
-    last: 0,
+    current: 1,
+    next: 2,
+    last: 1,
   },
 };
 

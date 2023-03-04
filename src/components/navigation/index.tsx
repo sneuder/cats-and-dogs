@@ -1,13 +1,16 @@
 import { Text, StyleSheet, TouchableOpacity, View } from 'react-native';
+import useNavigator from '../../hooks/useNavigator';
 
-const Navigation = ({ amount }) => {
+const Navigation = () => {
+  const { total, itemsToRender } = useNavigator();
+
   return (
     <View style={styles.container}>
-      {Array(amount).fill(
+      {itemsToRender().map(({ position }) => (
         <TouchableOpacity style={styles.containerSection}>
-          <Text>1</Text>
+          <Text>{position}</Text>
         </TouchableOpacity>
-      )}
+      ))}
     </View>
   );
 };
