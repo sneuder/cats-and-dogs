@@ -8,13 +8,17 @@ import { navigationDetails } from '../state/slices/app';
 import { searchDog, toggleBooleanStates } from '../state/slices/app';
 
 import { getAllPetsByPage, getAllPets } from '../services';
+import { splitLengthIntoPages } from '../services/format';
 
 const usePet = (petType: PetType) => {
   const dispatch = useDispatch();
 
   const pets = useSelector((state: any) => state.pet.pets[petType]);
-  const { searchQuery, loadPets } = useSelector((state: any) => state.app);
+  const { searchQuery, loadPets, navigator } = useSelector(
+    (state: any) => state.app
+  );
 
+  // save pet info
   const handleDogsByPage = (page = 0, limit = 10) => {
     dispatch(toggleBooleanStates(['loadPets', true]));
 
@@ -22,16 +26,15 @@ const usePet = (petType: PetType) => {
     const allDogs = getAllPets(petType);
 
     Promise.all([allDogs, allDogsByPage]).then((values) => {
-      dispatch(navigationDetails(['total', values[0].data.length]));
+      const pages = splitLengthIntoPages(values[0].data.length, 10);
+      dispatch(navigationDetails(['total', pages]));
+
       dispatch(addPets([petType, values[1].data]));
       dispatch(toggleBooleanStates(['loadPets', false]));
     });
   };
 
-  const handleSaveSearch = (value: string) => {
-    dispatch(searchDog(value));
-  };
-
+  // search dog by query
   const handleSearchDogs = () => {
     dispatch(addPets([petType, []]));
   };
@@ -40,9 +43,17 @@ const usePet = (petType: PetType) => {
     petType && handleDogsByPage();
   }, []);
 
+  // when changing navigation
+  useEffect(() => {
+    handleDogsByPage(navigator.current - 1);
+  }, [navigator.current]);
+
+  // reset info when getting out of screen
   useEffect(() => {
     return () => {
       loadPets && dispatch(toggleBooleanStates(['loadPets', false]));
+      dispatch(navigationDetails(['total', 0]));
+      dispatch(addPets([petType, []]));
     };
   }, []);
 
@@ -51,7 +62,6 @@ const usePet = (petType: PetType) => {
     loadPets,
     handleDogsByPage,
     handleSearchDogs,
-    handleSaveSearch,
   };
 };
 

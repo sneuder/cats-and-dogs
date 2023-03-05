@@ -2,12 +2,17 @@ import { Text, StyleSheet, TouchableOpacity, View } from 'react-native';
 import useNavigator from '../../hooks/useNavigator';
 
 const Navigation = () => {
-  const { total, itemsToRender } = useNavigator();
+  const { total, itemsToRender, handleChangePage } = useNavigator();
+
+  if (total === 0) return;
 
   return (
     <View style={styles.container}>
       {itemsToRender().map(({ position }) => (
-        <TouchableOpacity style={styles.containerSection}>
+        <TouchableOpacity
+          style={styles.containerSection}
+          onPress={() => handleChangePage(position)}
+        >
           <Text>{position}</Text>
         </TouchableOpacity>
       ))}

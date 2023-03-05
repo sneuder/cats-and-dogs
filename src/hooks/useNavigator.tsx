@@ -1,4 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { navigationDetails } from '../state/slices/app';
+import { useEffect } from 'react';
 
 const useNavigator = () => {
   const dispatch = useDispatch();
@@ -21,9 +23,20 @@ const useNavigator = () => {
     return items;
   };
 
+  const handleChangePage = (numberPage: number) => {
+    dispatch(navigationDetails(['current', numberPage]));
+  };
+
+  useEffect(() => {
+    return () => {
+      dispatch(navigationDetails(['current', 0]));
+    };
+  }, []);
+
   return {
     total,
     itemsToRender,
+    handleChangePage,
   };
 };
 
