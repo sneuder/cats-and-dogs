@@ -2,7 +2,7 @@ import { Text, StyleSheet, TouchableOpacity, View } from 'react-native';
 import useNavigator from '../../hooks/useNavigator';
 
 const Navigation = () => {
-  const { total, itemsToRender, handleChangePage } = useNavigator();
+  const { total, current, itemsToRender, handleChangePage } = useNavigator();
 
   if (total === 0) return;
 
@@ -10,10 +10,13 @@ const Navigation = () => {
     <View style={styles.container}>
       {itemsToRender().map(({ position }) => (
         <TouchableOpacity
-          style={styles.containerSection}
+          style={[
+            styles.containerSection,
+            current === position && styles.current,
+          ]}
           onPress={() => handleChangePage(position)}
         >
-          <Text>{position}</Text>
+          <Text style={[current === position && styles.text]}>{position}</Text>
         </TouchableOpacity>
       ))}
     </View>
@@ -33,6 +36,13 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     width: 30,
     height: 30,
+  },
+  current: {
+    backgroundColor: 'brown',
+    borderColor: 'brown',
+  },
+  text: {
+    color: 'white',
   },
 });
 
