@@ -1,6 +1,8 @@
 import { useEffect, useRef } from 'react';
-import { View, StyleSheet, Animated } from 'react-native';
+
+import { View, Animated } from 'react-native';
 import ListLayout from '../../listLayout';
+import styles from './styles';
 
 const LoaderPets = () => {
   const times = [1, 2, 3, 4, 5, 6, 7, 8];
@@ -43,14 +45,5 @@ const LoaderPets = () => {
     </ListLayout>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    width: '100%',
-    height: 250,
-    backgroundColor: 'grey',
-    borderRadius: 8,
-  },
-});
 
 export default LoaderPets;
