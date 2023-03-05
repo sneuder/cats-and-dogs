@@ -38,6 +38,7 @@ const usePet = (petType: PetType) => {
 
   // search dog by query
   const handleSearchDogs = async () => {
+    if (search === '') return;
     const petsByName = await searchPets(petType, search, 1, 10);
     dispatch(addPets([petType, petsByName]));
   };

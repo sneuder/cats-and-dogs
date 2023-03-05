@@ -14,11 +14,12 @@ const styles = StyleSheet.create({
   },
   textButton: {
     textAlign: 'center',
+    color: '#fff',
   },
   containerButton: {
-    alignContent: 'center',
+    justifyContent: 'center',
     padding: 10,
-    backgroundColor: 'red',
+    backgroundColor: 'brown',
     borderTopRightRadius: 8,
     borderBottomRightRadius: 8,
   },
