@@ -4,10 +4,9 @@ import PetType from '../interfaces/PetType';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { addPets } from '../state/slices/pet';
-import { navigationDetails } from '../state/slices/app';
-import { toggleBooleanStates } from '../state/slices/app';
+import { toggleBooleanStates, navigationDetails } from '../state/slices/app';
 
-import { getAllPetsByPage, getAllPets } from '../services';
+import { getAllPetsByPage, getAllPets, searchPets } from '../services';
 import { splitLengthIntoPages } from '../services/format';
 
 import Pet from '../models/Pet';
@@ -16,7 +15,9 @@ const usePet = (petType: PetType) => {
   const dispatch = useDispatch();
 
   const pets = useSelector((state: any) => state.pet.pets[petType]);
-  const { loadPets, navigator } = useSelector((state: any) => state.app);
+  const { loadPets, navigator, search } = useSelector(
+    (state: any) => state.app
+  );
 
   // save pet info
   const handleDogsByPage = (page = 0, limit = 10) => {
@@ -36,8 +37,9 @@ const usePet = (petType: PetType) => {
   };
 
   // search dog by query
-  const handleSearchDogs = () => {
-    dispatch(addPets([petType, []]));
+  const handleSearchDogs = async () => {
+    const petsByName = await searchPets(petType, search, 1, 10);
+    dispatch(addPets([petType, petsByName]));
   };
 
   useEffect(() => {

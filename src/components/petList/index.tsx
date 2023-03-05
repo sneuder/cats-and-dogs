@@ -25,7 +25,7 @@ const PetList = ({ pets, loadPets }: any) => {
             <Text>{pet.name}</Text>
 
             <View style={styles.tempsContainer}>
-              {pet.temperaments.map((temperament: string) => (
+              {pet.temperaments?.map((temperament: string) => (
                 <View
                   key={temperament}
                   style={styles.tempContainer}

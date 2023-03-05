@@ -1,20 +1,20 @@
 import { View, TextInput, Text, TouchableOpacity } from 'react-native';
-import useDogs from '../../hooks/usePet';
+import useSearch from '../../hooks/useSearch';
 import styles from './styles';
 
-const SearchBar = () => {
-  // const { handleSearchDogs, handleSaveSearch } = useDogs();
+const SearchBar = ({ eventSearch }) => {
+  const { handleSearch } = useSearch();
 
   return (
     <View style={styles.container}>
       <TextInput
         style={styles.input}
         placeholder="Search puppies"
-        // onChangeText={handleSaveSearch}
+        onChangeText={(text) => handleSearch(text)}
       />
       <TouchableOpacity
         style={styles.containerButton}
-        // onPress={handleSearchDogs}
+        onPress={eventSearch}
       >
         <Text style={styles.textButton}>Search</Text>
       </TouchableOpacity>

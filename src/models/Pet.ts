@@ -5,7 +5,7 @@ const Pet = (info: any, petType: PetType) => {
     `https://cdn2.the${petType}api.com/images/${idImage}.jpg`;
 
   const formatTemps = (temps: string) => {
-    const splitedTemps = temps.split(', ');
+    const splitedTemps = temps?.split(', ');
     return splitedTemps;
   };
 

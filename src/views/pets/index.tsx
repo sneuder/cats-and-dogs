@@ -9,12 +9,12 @@ import Navigation from '../../components/navigation';
 import usePet from '../../hooks/usePet';
 
 const Pets = ({ route }) => {
-  const { pets, loadPets } = usePet(route.params.pet);
+  const { pets, loadPets, handleSearchDogs } = usePet(route.params.pet);
 
   return (
     <ScrollView>
       <MainLayout>
-        <SearchBar />
+        <SearchBar eventSearch={handleSearchDogs} />
         <PetList
           pets={pets}
           loadPets={loadPets}
