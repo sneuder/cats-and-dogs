@@ -13,20 +13,29 @@ const useNavigator = () => {
     const limit = 6;
 
     let items = Array.from({ length: limit }, (_, index) => {
-      if (current - 2 < 1) return model(current);
-      return model(current - 2);
+      if (current - 1 < 1) return model(current);
+      return model(current - 1);
     });
 
-    items = items.map((item, index) => {
-      item.position += index;
-      return item;
-    });
+    items = items.reduce(
+      (prevItems, currentItem) => {
+        const prevItem = prevItems[prevItems.length - 1];
+        const numberPage = prevItem.position;
 
-    // items = items.reduce((prevItem, currentItem) => {
+        if (numberPage >= total) {
+          prevItems.unshift(model(prevItems[0].position - 1));
+          return prevItems;
+        }
 
-    // }, [items[0]]);
+        currentItem = { ...currentItem };
+        currentItem.position = numberPage + 1;
 
-    items.push(model(total));
+        const pages = [...prevItems, currentItem];
+        return pages;
+      },
+      [items[0]]
+    );
+
     return items;
   };
 

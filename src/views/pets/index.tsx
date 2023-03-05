@@ -19,7 +19,7 @@ const Pets = ({ route }) => {
           pets={pets}
           loadPets={loadPets}
         />
-        <Navigation amount={3} />
+        <Navigation />
       </MainLayout>
     </ScrollView>
   );

@@ -4,7 +4,7 @@ import useNavigator from '../../hooks/useNavigator';
 const Navigation = () => {
   const { total, current, itemsToRender, handleChangePage } = useNavigator();
 
-  if (total === 0) return;
+  if (total === 0) return null;
 
   return (
     <View style={styles.container}>
