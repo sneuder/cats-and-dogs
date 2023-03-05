@@ -8,8 +8,9 @@ const Navigation = () => {
 
   return (
     <View style={styles.container}>
-      {itemsToRender().map(({ position }) => (
+      {itemsToRender().map(({ position }, index) => (
         <TouchableOpacity
+          key={index}
           style={[
             styles.containerSection,
             current === position && styles.current,

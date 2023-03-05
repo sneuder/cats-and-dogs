@@ -7,8 +7,6 @@ export interface InitialState {
   navigator: {
     total: number;
     current: number;
-    next: number;
-    last: number;
   };
 }
 
@@ -18,8 +16,6 @@ const initialState: InitialState = {
   navigator: {
     total: 0,
     current: 1,
-    next: 2,
-    last: 1,
   },
 };
 
