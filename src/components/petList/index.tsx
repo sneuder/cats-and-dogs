@@ -16,13 +16,22 @@ const PetList = ({ pets, loadPets }: any) => {
           <Image
             style={style.image}
             source={{
-              uri:
-                pet.image?.url ||
-                `https://cdn2.thecatapi.com/images/${pet.reference_image_id}.jpg`,
+              uri: pet.image,
             }}
           />
           <View style={style.infoContainer}>
             <Text>{pet.name}</Text>
+
+            <View style={style.tempsContainer}>
+              {pet.temperaments.map((temperament: string) => (
+                <View
+                  key={temperament}
+                  style={style.tempContainer}
+                >
+                  <Text>{temperament}</Text>
+                </View>
+              ))}
+            </View>
           </View>
         </View>
       ))}
@@ -42,6 +51,19 @@ const style = StyleSheet.create({
   },
   infoContainer: {
     padding: 10,
+    gap: 10,
+  },
+
+  tempsContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 10,
+  },
+
+  tempContainer: {
+    padding: 5,
+    borderWidth: 1,
+    borderRadius: 8,
   },
 });
 

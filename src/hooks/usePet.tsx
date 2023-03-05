@@ -3,20 +3,20 @@ import { useEffect } from 'react';
 import PetType from '../interfaces/PetType';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { addPets, amountPets } from '../state/slices/pet';
+import { addPets } from '../state/slices/pet';
 import { navigationDetails } from '../state/slices/app';
-import { searchDog, toggleBooleanStates } from '../state/slices/app';
+import { toggleBooleanStates } from '../state/slices/app';
 
 import { getAllPetsByPage, getAllPets } from '../services';
 import { splitLengthIntoPages } from '../services/format';
+
+import Pet from '../models/Pet';
 
 const usePet = (petType: PetType) => {
   const dispatch = useDispatch();
 
   const pets = useSelector((state: any) => state.pet.pets[petType]);
-  const { searchQuery, loadPets, navigator } = useSelector(
-    (state: any) => state.app
-  );
+  const { loadPets, navigator } = useSelector((state: any) => state.app);
 
   // save pet info
   const handleDogsByPage = (page = 0, limit = 10) => {
@@ -27,9 +27,10 @@ const usePet = (petType: PetType) => {
 
     Promise.all([allDogs, allDogsByPage]).then((values) => {
       const pages = splitLengthIntoPages(values[0].data.length, 10);
-      dispatch(navigationDetails(['total', pages]));
+      const reqPets = values[1].data.map((reqPet: any) => Pet(reqPet, petType));
 
-      dispatch(addPets([petType, values[1].data]));
+      dispatch(navigationDetails(['total', pages]));
+      dispatch(addPets([petType, reqPets]));
       dispatch(toggleBooleanStates(['loadPets', false]));
     });
   };
