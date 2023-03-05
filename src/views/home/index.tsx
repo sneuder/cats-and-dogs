@@ -1,11 +1,10 @@
 import { Fragment } from 'react';
-
-import { StyleSheet, Image, TouchableHighlight, View } from 'react-native';
+import { Image, TouchableHighlight, View } from 'react-native';
 
 import MainLayout from '../../common/mainLayout';
-import ListLayout from '../../common/listLayout';
-
 import homeOptions from '../../constants/homeOptions';
+
+import styles from './styles';
 
 const Home = ({ navigation }) => {
   return (
@@ -32,13 +31,5 @@ const Home = ({ navigation }) => {
     </MainLayout>
   );
 };
-
-const styles = StyleSheet.create({
-  image: {
-    flex: 1,
-    width: '100%',
-    borderRadius: 8,
-  },
-});
 
 export default Home;
