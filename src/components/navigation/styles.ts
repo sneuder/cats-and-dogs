@@ -13,10 +13,12 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     width: 30,
     height: 30,
+    backgroundColor: '#D8D6D6',
+    borderColor: '#D8D6D6',
   },
   current: {
-    backgroundColor: 'brown',
-    borderColor: 'brown',
+    backgroundColor: '#246AAD',
+    borderColor: '#246AAD',
   },
   text: {
     color: 'white',

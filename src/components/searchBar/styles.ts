@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     borderWidth: 1,
+    borderColor: '#D8D6D6',
     borderRightWidth: 0,
     padding: 10,
     borderTopLeftRadius: 8,
@@ -19,7 +20,7 @@ const styles = StyleSheet.create({
   containerButton: {
     justifyContent: 'center',
     padding: 10,
-    backgroundColor: 'brown',
+    backgroundColor: '#246AAD',
     borderTopRightRadius: 8,
     borderBottomRightRadius: 8,
   },

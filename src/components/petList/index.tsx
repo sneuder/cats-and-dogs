@@ -12,7 +12,7 @@ const PetList = ({ pets, loadPets }: any) => {
     <ListLayout>
       {pets.map((pet: any) => (
         <View
-          style={styles.dogCard}
+          style={styles.petCard}
           key={pet.id}
         >
           <Image
@@ -22,7 +22,7 @@ const PetList = ({ pets, loadPets }: any) => {
             }}
           />
           <View style={styles.infoContainer}>
-            <Text>{pet.name}</Text>
+            <Text style={styles.petName}>{pet.name}</Text>
 
             <View style={styles.tempsContainer}>
               {pet.temperaments?.map((temperament: string) => (
@@ -30,7 +30,7 @@ const PetList = ({ pets, loadPets }: any) => {
                   key={temperament}
                   style={styles.tempContainer}
                 >
-                  <Text>{temperament}</Text>
+                  <Text style={styles.temp}>{temperament}</Text>
                 </View>
               ))}
             </View>
