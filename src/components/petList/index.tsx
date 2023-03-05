@@ -1,7 +1,9 @@
-import { Text, View, Image, StyleSheet } from 'react-native';
+import { Text, View, Image } from 'react-native';
 
 import LoaderPets from '../../common/loaders/pets/indext';
 import ListLayout from '../../common/listLayout';
+
+import styles from './styles';
 
 const PetList = ({ pets, loadPets }: any) => {
   if (loadPets) return <LoaderPets />;
@@ -10,23 +12,23 @@ const PetList = ({ pets, loadPets }: any) => {
     <ListLayout>
       {pets.map((pet: any) => (
         <View
-          style={style.dogCard}
+          style={styles.dogCard}
           key={pet.id}
         >
           <Image
-            style={style.image}
+            style={styles.image}
             source={{
               uri: pet.image,
             }}
           />
-          <View style={style.infoContainer}>
+          <View style={styles.infoContainer}>
             <Text>{pet.name}</Text>
 
-            <View style={style.tempsContainer}>
+            <View style={styles.tempsContainer}>
               {pet.temperaments.map((temperament: string) => (
                 <View
                   key={temperament}
-                  style={style.tempContainer}
+                  style={styles.tempContainer}
                 >
                   <Text>{temperament}</Text>
                 </View>
@@ -38,33 +40,5 @@ const PetList = ({ pets, loadPets }: any) => {
     </ListLayout>
   );
 };
-
-const style = StyleSheet.create({
-  dogCard: {
-    backgroundColor: '#756363',
-    borderRadius: 8,
-    overflow: 'hidden',
-  },
-  image: {
-    width: '100%',
-    height: 200,
-  },
-  infoContainer: {
-    padding: 10,
-    gap: 10,
-  },
-
-  tempsContainer: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 10,
-  },
-
-  tempContainer: {
-    padding: 5,
-    borderWidth: 1,
-    borderRadius: 8,
-  },
-});
 
 export default PetList;
