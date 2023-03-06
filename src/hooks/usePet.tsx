@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { Image } from 'react-native';
 
 import PetType from '../interfaces/PetType';
 
@@ -16,9 +15,16 @@ const usePet = (petType: PetType) => {
   const dispatch = useDispatch();
 
   const pets = useSelector((state: any) => state.pet.pets[petType]);
-  const { loadPets, navigator, search } = useSelector(
-    (state: any) => state.app
-  );
+  const {
+    loadPets,
+    navigator: { current },
+    search,
+  } = useSelector((state: any) => state.app);
+
+  const updatePage = (length: number) => {
+    const pages = splitLengthIntoPages(length, 10);
+    dispatch(navigationDetails(['total', pages]));
+  };
 
   // save pet info
   const handleDogsByPage = (page = 0, limit = 10) => {
@@ -28,10 +34,9 @@ const usePet = (petType: PetType) => {
     const allDogs = getAllPets(petType);
 
     Promise.all([allDogs, allDogsByPage]).then((values) => {
-      const pages = splitLengthIntoPages(values[0].data.length, 10);
       const reqPets = values[1].data.map((reqPet: any) => Pet(reqPet, petType));
 
-      dispatch(navigationDetails(['total', pages]));
+      updatePage(values[0].data.length);
       dispatch(addPets([petType, reqPets]));
       dispatch(toggleBooleanStates(['loadPets', false]));
     });
@@ -39,17 +44,14 @@ const usePet = (petType: PetType) => {
 
   // search dog by query
   const handleSearchDogs = async () => {
-    if (search === '') return;
     dispatch(toggleBooleanStates(['loadPets', true]));
 
-    const { petsByName, length } = await searchPets(petType, search, 1, 10);
-    dispatch(addPets([petType, petsByName]));
+    const { petsByName, length } = await searchPets(petType, search, current);
 
+    dispatch(addPets([petType, petsByName]));
     if (length === 0) dispatch(addPets([petType, []]));
 
-    const pages = splitLengthIntoPages(length, 10);
-    dispatch(navigationDetails(['total', pages]));
-
+    updatePage(length);
     dispatch(toggleBooleanStates(['loadPets', false]));
   };
 
@@ -59,8 +61,13 @@ const usePet = (petType: PetType) => {
 
   // when changing navigation
   useEffect(() => {
-    handleDogsByPage(navigator.current - 1);
-  }, [navigator.current]);
+    if (search !== '') {
+      handleSearchDogs();
+      return;
+    }
+
+    handleDogsByPage(current - 1);
+  }, [current]);
 
   // reset info when getting out of screen
   useEffect(() => {
