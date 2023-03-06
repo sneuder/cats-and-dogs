@@ -12,7 +12,8 @@ const styles = StyleSheet.create({
   },
   image: {
     width: '100%',
-    height: 200,
+    height: 300,
+    resizeMode: 'cover',
   },
   infoContainer: {
     padding: 10,
@@ -33,7 +34,6 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     borderColor: '#D8D6D6',
   },
-
   temp: {
     color: '#626161',
   },

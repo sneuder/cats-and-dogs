@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { Image } from 'react-native';
 
 import PetType from '../interfaces/PetType';
 

@@ -10,7 +10,7 @@ const PetList = ({ pets, loadPets }: any) => {
 
   return (
     <ListLayout>
-      {pets.map((pet: any) => (
+      {pets.map((pet: any, index: number) => (
         <View
           style={styles.petCard}
           key={pet.id}
