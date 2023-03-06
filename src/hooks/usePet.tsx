@@ -40,8 +40,17 @@ const usePet = (petType: PetType) => {
   // search dog by query
   const handleSearchDogs = async () => {
     if (search === '') return;
-    const petsByName = await searchPets(petType, search, 1, 10);
+    dispatch(toggleBooleanStates(['loadPets', true]));
+
+    const { petsByName, length } = await searchPets(petType, search, 1, 10);
     dispatch(addPets([petType, petsByName]));
+
+    if (length === 0) dispatch(addPets([petType, []]));
+
+    const pages = splitLengthIntoPages(length, 10);
+    dispatch(navigationDetails(['total', pages]));
+
+    dispatch(toggleBooleanStates(['loadPets', false]));
   };
 
   useEffect(() => {

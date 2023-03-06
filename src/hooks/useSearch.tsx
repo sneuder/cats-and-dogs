@@ -6,7 +6,7 @@ const useSearch = () => {
   const dispatch = useDispatch();
 
   const handleSearch = (text: string) => {
-    dispatch(searchDog(text.trim()));
+    dispatch(searchDog(text.trim().toLowerCase()));
   };
 
   return {
