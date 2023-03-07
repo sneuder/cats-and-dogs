@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import useLoad from './useLoad';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { addPets } from '../state/slices/pet';
+import { addPets, amountPets } from '../state/slices/pet';
 import { toggleBooleanStates, navigationDetails } from '../state/slices/app';
 
 import { getAllPetsByPage, getAllPets, searchPets } from '../services';
@@ -27,7 +27,7 @@ const usePet = () => {
 
     Promise.all([allDogs, allDogsByPage]).then((values) => {
       const reqPets = values[1].data.map((reqPet: any) => Pet(reqPet, petType));
-
+      dispatch(amountPets(values[0].data.length));
       dispatch(addPets([petType, reqPets]));
       handleLoadPet(false);
     });
@@ -36,11 +36,12 @@ const usePet = () => {
   // search dog by query
   const handleSearchDogs = async () => {
     handleLoadPet(true);
-
     const { petsByName, length } = await searchPets(petType, search, current);
-    dispatch(addPets([petType, petsByName]));
-    if (length === 0) dispatch(addPets([petType, []]));
 
+    dispatch(amountPets(length));
+    dispatch(addPets([petType, petsByName]));
+
+    // if (length === 0) dispatch(addPets([petType, []]));
     handleLoadPet(false);
   };
 

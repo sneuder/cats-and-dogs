@@ -6,7 +6,7 @@ import { splitLengthIntoPages } from '../services/format';
 const useNavigator = () => {
   const dispatch = useDispatch();
 
-  const pets = useSelector((state: any) => state.pet.pets);
+  const { pets, amount } = useSelector((state: any) => state.pet);
   const { navigator, petType } = useSelector((state: any) => state.app);
   const { total, current } = navigator;
 
@@ -54,7 +54,8 @@ const useNavigator = () => {
   };
 
   const handleTotalPage = () => {
-    const pages = splitLengthIntoPages(pets[petType].length, 10);
+    const pages = splitLengthIntoPages(amount, 10);
+    console.log(pages);
     dispatch(navigationDetails(['total', pages]));
   };
 
