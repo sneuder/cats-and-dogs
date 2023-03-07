@@ -1,3 +1,6 @@
+import PetType from '../../interfaces/PetType';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+
 import { ScrollView } from 'react-native';
 
 import MainLayout from '../../common/mainLayout';
@@ -10,7 +13,15 @@ import usePet from '../../hooks/usePet';
 import usePetType from '../../hooks/usePetType';
 import useNavigator from '../../hooks/useNavigator';
 
-const Pets = ({ route }) => {
+type RootStackParamList = {
+  Pets: {
+    pet: PetType;
+  };
+};
+
+type Props = NativeStackScreenProps<RootStackParamList, 'Pets'>;
+
+const Pets = ({ route }: Props) => {
   usePetType(route.params.pet);
   const { pets, loadPets, handleSearchDogs } = usePet();
   const propsNavigator = useNavigator();
