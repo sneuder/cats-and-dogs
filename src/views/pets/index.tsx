@@ -8,10 +8,12 @@ import Navigation from '../../components/navigation';
 
 import usePet from '../../hooks/usePet';
 import usePetType from '../../hooks/usePetType';
+import useNavigator from '../../hooks/useNavigator';
 
 const Pets = ({ route }) => {
   usePetType(route.params.pet);
   const { pets, loadPets, handleSearchDogs } = usePet();
+  const propsNavigator = useNavigator();
 
   return (
     <ScrollView>
@@ -21,7 +23,7 @@ const Pets = ({ route }) => {
           pets={pets}
           loadPets={loadPets}
         />
-        <Navigation />
+        <Navigation {...propsNavigator} />
       </MainLayout>
     </ScrollView>
   );

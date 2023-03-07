@@ -1,10 +1,7 @@
 import { Text, TouchableOpacity, View } from 'react-native';
-import useNavigator from '../../hooks/useNavigator';
 import styles from './styles';
 
-const Navigation = () => {
-  const { total, current, itemsToRender, handleChangePage } = useNavigator();
-
+const Navigation = ({ total, current, itemsToRender, handleChangePage }) => {
   if (total === 0) return null;
 
   return (
