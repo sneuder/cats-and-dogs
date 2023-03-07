@@ -1,18 +1,22 @@
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { navigationDetails } from '../state/slices/app';
-import { useEffect } from 'react';
+import { splitLengthIntoPages } from '../services/format';
 
 const useNavigator = () => {
   const dispatch = useDispatch();
-  const { total, current } = useSelector((state: any) => state.app.navigator);
+
+  const pets = useSelector((state: any) => state.pet.pets);
+  const { navigator, petType } = useSelector((state: any) => state.app);
+  const { total, current } = navigator;
 
   const itemsToRender = () => {
-    const model = (position: number) => ({ position });
-    const limit = 6;
+    const positionModel = (position: number) => ({ position });
+    const limitItmes = 6;
 
-    let items = Array.from({ length: limit }, (_, index) => {
-      if (current - 1 < 1) return model(current);
-      return model(current - 1);
+    let items = Array.from({ length: limitItmes }, () => {
+      if (current - 1 < 1) return positionModel(current);
+      return positionModel(current - 1);
     });
 
     items = items.reduce(
@@ -22,7 +26,7 @@ const useNavigator = () => {
 
         if (numberPage >= total - 1) {
           if (prevItems[0].position - 1 <= 1) return prevItems;
-          prevItems.unshift(model(prevItems[0].position - 1));
+          prevItems.unshift(positionModel(prevItems[0].position - 1));
           return prevItems;
         }
 
@@ -39,8 +43,8 @@ const useNavigator = () => {
       [items[0]]
     );
 
-    items.push(model(total));
-    items.unshift(model(1));
+    items.push(positionModel(total));
+    items.unshift(positionModel(1));
 
     return items;
   };
@@ -48,6 +52,15 @@ const useNavigator = () => {
   const handleChangePage = (numberPage: number) => {
     dispatch(navigationDetails(['current', numberPage]));
   };
+
+  const handleTotalPage = () => {
+    const pages = splitLengthIntoPages(pets[petType].length, 10);
+    dispatch(navigationDetails(['total', pages]));
+  };
+
+  useEffect(() => {
+    handleTotalPage();
+  }, [pets[petType]]);
 
   useEffect(() => {
     return () => {

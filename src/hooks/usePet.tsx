@@ -1,34 +1,26 @@
 import { useEffect } from 'react';
-
-import PetType from '../interfaces/PetType';
+import useLoad from './useLoad';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { addPets } from '../state/slices/pet';
 import { toggleBooleanStates, navigationDetails } from '../state/slices/app';
 
 import { getAllPetsByPage, getAllPets, searchPets } from '../services';
-import { splitLengthIntoPages } from '../services/format';
 
 import Pet from '../models/Pet';
 
-const usePet = (petType: PetType) => {
+const usePet = () => {
+  const { handleLoadPet, loadPets } = useLoad();
   const dispatch = useDispatch();
+  const { pet, app } = useSelector((state: any) => state);
 
-  const pets = useSelector((state: any) => state.pet.pets[petType]);
-  const {
-    loadPets,
-    navigator: { current },
-    search,
-  } = useSelector((state: any) => state.app);
-
-  const updatePage = (length: number) => {
-    const pages = splitLengthIntoPages(length, 10);
-    dispatch(navigationDetails(['total', pages]));
-  };
+  const { navigator, search, petType } = app;
+  const { current } = navigator;
+  const pets = pet.pets[petType];
 
   // save pet info
   const handleDogsByPage = (page = 0, limit = 10) => {
-    dispatch(toggleBooleanStates(['loadPets', true]));
+    handleLoadPet(true);
 
     const allDogsByPage = getAllPetsByPage(petType, page, limit);
     const allDogs = getAllPets(petType);
@@ -36,27 +28,24 @@ const usePet = (petType: PetType) => {
     Promise.all([allDogs, allDogsByPage]).then((values) => {
       const reqPets = values[1].data.map((reqPet: any) => Pet(reqPet, petType));
 
-      updatePage(values[0].data.length);
       dispatch(addPets([petType, reqPets]));
-      dispatch(toggleBooleanStates(['loadPets', false]));
+      handleLoadPet(false);
     });
   };
 
   // search dog by query
   const handleSearchDogs = async () => {
-    dispatch(toggleBooleanStates(['loadPets', true]));
+    handleLoadPet(true);
 
     const { petsByName, length } = await searchPets(petType, search, current);
-
     dispatch(addPets([petType, petsByName]));
     if (length === 0) dispatch(addPets([petType, []]));
 
-    updatePage(length);
-    dispatch(toggleBooleanStates(['loadPets', false]));
+    handleLoadPet(false);
   };
 
   useEffect(() => {
-    petType && handleDogsByPage();
+    handleDogsByPage();
   }, []);
 
   // when changing navigation

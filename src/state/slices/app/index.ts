@@ -1,7 +1,9 @@
+import PetType from '../../../interfaces/PetType';
 import { createSlice } from '@reduxjs/toolkit';
 import * as reducers from './reducers';
 
 export interface InitialState {
+  petType: PetType;
   search: string;
   loadPets: boolean;
   navigator: {
@@ -11,6 +13,7 @@ export interface InitialState {
 }
 
 const initialState: InitialState = {
+  petType: 'dog',
   search: '',
   loadPets: false,
   navigator: {
@@ -25,6 +28,11 @@ export const appSlice = createSlice({
   reducers,
 });
 
-export const { searchDog, toggleBooleanStates, navigationDetails } =
-  appSlice.actions;
+export const {
+  searchDog,
+  toggleBooleanStates,
+  navigationDetails,
+  petTypeChange,
+} = appSlice.actions;
+
 export default appSlice.reducer;

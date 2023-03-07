@@ -7,9 +7,11 @@ import PetList from '../../components/petList';
 import Navigation from '../../components/navigation';
 
 import usePet from '../../hooks/usePet';
+import usePetType from '../../hooks/usePetType';
 
 const Pets = ({ route }) => {
-  const { pets, loadPets, handleSearchDogs } = usePet(route.params.pet);
+  usePetType(route.params.pet);
+  const { pets, loadPets, handleSearchDogs } = usePet();
 
   return (
     <ScrollView>
