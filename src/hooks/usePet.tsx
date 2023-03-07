@@ -41,7 +41,6 @@ const usePet = () => {
     dispatch(amountPets(length));
     dispatch(addPets([petType, petsByName]));
 
-    // if (length === 0) dispatch(addPets([petType, []]));
     handleLoadPet(false);
   };
 

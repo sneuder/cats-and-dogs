@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { navigationDetails } from '../state/slices/app';
-import { splitLengthIntoPages } from '../services/format';
+import { splitLengthIntoPages, createArray } from '../services/format';
 
 const useNavigator = () => {
   const dispatch = useDispatch();
@@ -12,12 +12,7 @@ const useNavigator = () => {
 
   const itemsToRender = () => {
     const positionModel = (position: number) => ({ position });
-    const limitItmes = 6;
-
-    let items = Array.from({ length: limitItmes }, () => {
-      if (current - 1 < 1) return positionModel(current);
-      return positionModel(current - 1);
-    });
+    let items = createArray(6, current);
 
     items = items.reduce(
       (prevItems, currentItem) => {
@@ -33,9 +28,9 @@ const useNavigator = () => {
         currentItem = { ...currentItem };
         currentItem.position = numberPage + 1;
 
-        if (prevItem.position === 1) prevItems = [];
-
         const pages = [...prevItems, currentItem];
+
+        if (prevItem.position === 1) pages.shift();
         if (currentItem.position === total) pages.pop();
 
         return pages;
@@ -43,8 +38,8 @@ const useNavigator = () => {
       [items[0]]
     );
 
-    items.push(positionModel(total));
     items.unshift(positionModel(1));
+    items.push(positionModel(total));
 
     return items;
   };
@@ -55,7 +50,6 @@ const useNavigator = () => {
 
   const handleTotalPage = () => {
     const pages = splitLengthIntoPages(amount, 10);
-    console.log(pages);
     dispatch(navigationDetails(['total', pages]));
   };
 
