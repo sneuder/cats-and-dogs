@@ -1,5 +1,6 @@
-import { FC } from 'react';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import RootStackParamList from '../../interfaces/Screens';
+
 import { Fragment } from 'react';
 import { Image, TouchableHighlight } from 'react-native';
 
@@ -8,14 +9,7 @@ import homeOptions from '../../constants/homeOptions';
 
 import styles from './styles';
 
-type RootStackParamList = {
-  Home: {
-    pet: string;
-  };
-};
-
 type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
-type Screens = 'Home';
 
 const Home = ({ navigation }: Props) => {
   return (
@@ -25,7 +19,7 @@ const Home = ({ navigation }: Props) => {
           <TouchableHighlight
             style={styles.image}
             onPress={() =>
-              navigation.navigate(name as Screens, {
+              navigation.navigate(name, {
                 pet,
               })
             }

@@ -4,22 +4,12 @@ import { Provider } from 'react-redux';
 import { StatusBar } from 'expo-status-bar';
 
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import Home from './src/views/home';
 import Pets from './src/views/pets';
 
 import { createStackNavigator } from '@react-navigation/stack';
-import PetType from './src/interfaces/PetType';
-
-type RootStackParamList = {
-  Home: {
-    pet: PetType;
-  };
-  Pets: {
-    pet: PetType;
-  };
-};
+import RootStackParamList from './src/interfaces/Screens';
 
 export default function App() {
   const { Navigator, Screen } = createStackNavigator<RootStackParamList>();

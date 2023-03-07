@@ -1,4 +1,6 @@
-const homeOptions = [
+import HomeOptions from '../interfaces/HomeOptions';
+
+const homeOptions: HomeOptions[] = [
   {
     name: 'Pets',
     pet: 'cat',
