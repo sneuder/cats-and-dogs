@@ -4,13 +4,19 @@ import LoaderPets from '../../common/loaders/pets/indext';
 import ListLayout from '../../common/listLayout';
 
 import styles from './styles';
+import PetFormatted from '../../interfaces/Pet';
 
-const PetList = ({ pets, loadPets }: any) => {
+interface PetListProps {
+  pets: PetFormatted[];
+  loadPets: boolean;
+}
+
+const PetList = ({ pets, loadPets }: PetListProps) => {
   if (loadPets) return <LoaderPets />;
 
   return (
     <ListLayout>
-      {pets.map((pet: any, index: number) => (
+      {pets.map((pet: PetFormatted) => (
         <View
           style={styles.petCard}
           key={pet.id}
@@ -25,7 +31,7 @@ const PetList = ({ pets, loadPets }: any) => {
             <Text style={styles.petName}>{pet.name}</Text>
 
             <View style={styles.tempsContainer}>
-              {pet.temperaments?.map((temperament: string) => (
+              {pet.temperaments.map((temperament: string) => (
                 <View
                   key={temperament}
                   style={styles.tempContainer}

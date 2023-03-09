@@ -2,7 +2,11 @@ import { View, TextInput, Text, TouchableOpacity } from 'react-native';
 import useSearch from '../../hooks/useSearch';
 import styles from './styles';
 
-const SearchBar = ({ eventSearch }) => {
+interface SearchBarProps {
+  eventSearch: () => void;
+}
+
+const SearchBar = ({ eventSearch }: SearchBarProps) => {
   const { handleSearch } = useSearch();
 
   return (
