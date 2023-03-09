@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 
 import { View, Animated } from 'react-native';
 import ListLayout from '../../listLayout';
+
 import styles from './styles';
 
 const LoaderPets = () => {

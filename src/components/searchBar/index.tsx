@@ -1,5 +1,5 @@
-import { View, TextInput, Text, TouchableOpacity } from 'react-native';
 import useSearch from '../../hooks/useSearch';
+import { View, TextInput, Text, TouchableOpacity } from 'react-native';
 import styles from './styles';
 
 interface SearchBarProps {

@@ -1,12 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 import * as reducers from './reducers';
+import PetFormatted from '../../../interfaces/Pet';
 
 export interface InitialState {
   pets: {
-    dog: { [key: string]: string | number }[];
-    cat: { [key: string]: string | number }[];
+    dog: PetFormatted[];
+    cat: PetFormatted[];
   };
-  pet: { [key: string]: string | number };
+  pet: PetFormatted;
   amount: number;
 }
 
@@ -15,7 +16,12 @@ const initialState: InitialState = {
     dog: [],
     cat: [],
   },
-  pet: {},
+  pet: {
+    id: '',
+    name: '',
+    image: '',
+    temperaments: [],
+  },
   amount: 0,
 };
 

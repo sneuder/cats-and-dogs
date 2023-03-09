@@ -1,10 +1,10 @@
-import { Text, View, Image } from 'react-native';
+import PetFormatted from '../../interfaces/Pet';
 
+import { Text, View, Image } from 'react-native';
 import LoaderPets from '../../common/loaders/pets/indext';
 import ListLayout from '../../common/listLayout';
 
 import styles from './styles';
-import PetFormatted from '../../interfaces/Pet';
 
 interface PetListProps {
   pets: PetFormatted[];
