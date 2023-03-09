@@ -1,7 +1,7 @@
 import PetType from '../interfaces/PetType';
-import PetFormatted from '../interfaces/Pet';
+import PetFormatted, { PetRequested } from '../interfaces/Pet';
 
-const Pet = (info: any, petType: PetType): PetFormatted => {
+const Pet = (info: PetRequested, petType: PetType): PetFormatted => {
   const baseURLImage = (idImage: string) =>
     `https://cdn2.the${petType}api.com/images/${idImage}.jpg`;
 

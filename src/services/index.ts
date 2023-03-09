@@ -1,5 +1,8 @@
 import axios from 'axios';
+
 import PetType from '../interfaces/PetType';
+import { PetRequested } from '../interfaces/Pet';
+
 import Pet from '../models/Pet';
 
 const baseURLs = (petType: PetType) => `https://api.the${petType}api.com/v1`;
@@ -34,8 +37,8 @@ export const searchPets = async (
 ) => {
   const allPets = (await getAllPets(petType)).data;
   const petsByName = allPets
-    .filter((pet: any) => pet.name.toLowerCase().includes(petName))
-    .map((pet: any) => Pet(pet, petType));
+    .filter((pet: PetRequested) => pet.name.toLowerCase().includes(petName))
+    .map((pet: PetRequested) => Pet(pet, petType));
 
   return {
     petsByName: petsByName.splice((page - 1) * limit, limit),

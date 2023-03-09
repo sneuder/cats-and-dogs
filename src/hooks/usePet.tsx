@@ -9,6 +9,7 @@ import { toggleBooleanStates, navigationDetails } from '../state/slices/app';
 import { getAllPetsByPage, getAllPets, searchPets } from '../services';
 
 import Pet from '../models/Pet';
+import { PetRequested } from '../interfaces/Pet';
 
 const usePet = () => {
   const { handleLoadPet, loadPets } = useLoad();
@@ -27,7 +28,9 @@ const usePet = () => {
     const allDogs = getAllPets(petType);
 
     Promise.all([allDogs, allDogsByPage]).then((values) => {
-      const reqPets = values[1].data.map((reqPet: any) => Pet(reqPet, petType));
+      const reqPets = values[1].data.map((reqPet: PetRequested) =>
+        Pet(reqPet, petType)
+      );
       dispatch(amountPets(values[0].data.length));
       dispatch(addPets([petType, reqPets]));
       handleLoadPet(false);
