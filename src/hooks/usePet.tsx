@@ -1,3 +1,4 @@
+import { RootState } from '../state';
 import { useEffect } from 'react';
 import useLoad from './useLoad';
 
@@ -12,7 +13,7 @@ import Pet from '../models/Pet';
 const usePet = () => {
   const { handleLoadPet, loadPets } = useLoad();
   const dispatch = useDispatch();
-  const { pet, app } = useSelector((state: any) => state);
+  const { pet, app } = useSelector((state: RootState) => state);
 
   const { navigator, search, petType } = app;
   const { current } = navigator;

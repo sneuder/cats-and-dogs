@@ -1,3 +1,4 @@
+import { RootState } from '../state';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { navigationDetails } from '../state/slices/app';
@@ -6,8 +7,8 @@ import { splitLengthIntoPages, createArray } from '../services/format';
 const useNavigator = () => {
   const dispatch = useDispatch();
 
-  const { pets, amount } = useSelector((state: any) => state.pet);
-  const { navigator, petType } = useSelector((state: any) => state.app);
+  const { pets, amount } = useSelector((state: RootState) => state.pet);
+  const { navigator, petType } = useSelector((state: RootState) => state.app);
   const { total, current } = navigator;
 
   const itemsToRender = () => {
