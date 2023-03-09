@@ -28,7 +28,6 @@ export default function App() {
           />
         </Navigator>
       </NavigationContainer>
-
       <StatusBar style="auto" />
     </Provider>
   );

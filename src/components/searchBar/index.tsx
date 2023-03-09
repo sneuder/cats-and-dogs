@@ -9,7 +9,7 @@ const SearchBar = ({ eventSearch }) => {
     <View style={styles.container}>
       <TextInput
         style={styles.input}
-        placeholder="Search puppies"
+        placeholder="Search pet"
         onChangeText={(text) => handleSearch(text)}
       />
       <TouchableOpacity
