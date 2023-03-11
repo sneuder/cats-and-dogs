@@ -16,7 +16,7 @@ type Props = NativeStackScreenProps<RootStackParamList, 'Pets'>;
 
 const Pets = ({ route }: Props) => {
   const { pets, loadPets, handleSearchDogs } = usePet(route.params.pet);
-  const propsNavigator = useNavigator();
+  const propsNavigator = useNavigator(route.params.pet);
 
   return (
     <ScrollView>

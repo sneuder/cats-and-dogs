@@ -9,13 +9,6 @@ export const searchDog = (
   state.search = action.payload;
 };
 
-export const petTypeChange = (
-  state: InitialState,
-  action: PayloadAction<PetType>
-) => {
-  state.petType = action.payload;
-};
-
 export const toggleBooleanStates = (
   state: InitialState,
   action: PayloadAction<[string, boolean]>

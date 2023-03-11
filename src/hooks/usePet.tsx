@@ -50,9 +50,15 @@ const usePet = (petType: PetType) => {
   };
 
   // the petType established
+  // reset info when getting out of screen
   useEffect(() => {
     handleDogsByPage();
-  }, [petType]);
+    return () => {
+      loadPets && dispatch(toggleBooleanStates(['loadPets', false]));
+      dispatch(navigationDetails(['total', 0]));
+      dispatch(addPets([petType, []]));
+    };
+  }, []);
 
   // when changing navigation
   useEffect(() => {
@@ -63,15 +69,6 @@ const usePet = (petType: PetType) => {
 
     handleDogsByPage(current - 1);
   }, [current]);
-
-  // reset info when getting out of screen
-  useEffect(() => {
-    return () => {
-      dispatch(toggleBooleanStates(['loadPets', false]));
-      dispatch(navigationDetails(['total', 0]));
-      dispatch(addPets([petType, []]));
-    };
-  }, []);
 
   return {
     pets,
