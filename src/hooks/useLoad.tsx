@@ -1,4 +1,5 @@
 import { RootState } from '../state';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleBooleanStates } from '../state/slices/app';
 
@@ -9,6 +10,10 @@ const useLoad = () => {
   const handleLoadPet = (value: boolean) => {
     dispatch(toggleBooleanStates(['loadPets', value]));
   };
+
+  useEffect(() => {
+    handleLoadPet(true);
+  }, []);
 
   return {
     loadPets,

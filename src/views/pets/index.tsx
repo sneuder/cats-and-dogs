@@ -10,14 +10,12 @@ import PetList from '../../components/petList';
 import Navigation from '../../components/navigation';
 
 import usePet from '../../hooks/usePet';
-import usePetType from '../../hooks/usePetType';
 import useNavigator from '../../hooks/useNavigator';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Pets'>;
 
 const Pets = ({ route }: Props) => {
-  usePetType(route.params.pet);
-  const { pets, loadPets, handleSearchDogs } = usePet();
+  const { pets, loadPets, handleSearchDogs } = usePet(route.params.pet);
   const propsNavigator = useNavigator();
 
   return (

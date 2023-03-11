@@ -10,19 +10,20 @@ import { getAllPetsByPage, getAllPets, searchPets } from '../services';
 
 import Pet from '../models/Pet';
 import { PetRequested } from '../interfaces/Pet';
+import PetType from '../interfaces/PetType';
 
-const usePet = () => {
+const usePet = (petType: PetType) => {
   const { handleLoadPet, loadPets } = useLoad();
   const dispatch = useDispatch();
   const { pet, app } = useSelector((state: RootState) => state);
 
-  const { navigator, search, petType } = app;
+  const { navigator, search } = app;
   const { current } = navigator;
   const pets = pet.pets[petType];
 
   // save pet info
   const handleDogsByPage = (page = 0, limit = 10) => {
-    handleLoadPet(true);
+    !loadPets && handleLoadPet(true);
 
     const allDogsByPage = getAllPetsByPage(petType, page, limit);
     const allDogs = getAllPets(petType);
@@ -48,9 +49,10 @@ const usePet = () => {
     handleLoadPet(false);
   };
 
+  // the petType established
   useEffect(() => {
     handleDogsByPage();
-  }, []);
+  }, [petType]);
 
   // when changing navigation
   useEffect(() => {
@@ -65,7 +67,7 @@ const usePet = () => {
   // reset info when getting out of screen
   useEffect(() => {
     return () => {
-      loadPets && dispatch(toggleBooleanStates(['loadPets', false]));
+      dispatch(toggleBooleanStates(['loadPets', false]));
       dispatch(navigationDetails(['total', 0]));
       dispatch(addPets([petType, []]));
     };
